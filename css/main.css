@@ -1,0 +1,20 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+#main{
+    width: 800px;
+    height: 400px;
+    margin: 0 auto;
+    background-color: #0c5460;
+}
+img {
+    width: 700px;
+    height: 300px;
+    margin: 0 auto;
+}
+
+#message-console{
+    color: red;
+}
