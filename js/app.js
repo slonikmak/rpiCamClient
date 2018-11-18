@@ -1,10 +1,32 @@
 $(function () {
 
+
+    var location = window.location.host;
+
+    status("host: "+location);
+
     var socket;
 
     $("#connect").on("click", function (e) {
         console.log("start connect!");
-        socket = initSocket($("#socketIP").val());
+        socket = initSocket(location);
+    });
+
+    $("#control").on("click", function () {
+        if ($("#control").text() === "start"){
+            $("#control").text("stop");
+            log("set start");
+            if (window.DeviceMotionEvent == undefined) {
+                //No accelerometer is present. Use buttons.
+                log("no accel");
+            } else {
+                log("init accel");
+                window.addEventListener("devicemotion", accelerometerUpdate, true);
+            }
+        } else {
+            $("#control").text("start");
+            window.removeEventListener("devicemotion", accelerometerUpdate, true);
+        }
     });
 
     function accelerometerUpdate(event) {
@@ -35,13 +57,7 @@ $(function () {
 
     }
 
-    if (window.DeviceMotionEvent == undefined) {
-        //No accelerometer is present. Use buttons.
-        log("no accel");
-    } else {
-        log("init accel");
-        window.addEventListener("devicemotion", accelerometerUpdate, true);
-    }
+
 
     function mapData(data, max) {
         if (Math.abs(data)>max){

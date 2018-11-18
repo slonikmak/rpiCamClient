@@ -1,10 +1,10 @@
 function initSocket(socetIP) {
 
-	var socetName = "ws://"+socetIP+":8123/";
+	var socketName = "ws://"+socetIP+":8123/";
 
-	log("try to connect " + socetName);
 
-	var ws = new WebSocket(socetName);
+
+	var ws = new WebSocket(socketName);
 	ws.onopen = function(e) {
 		log("WS open");
 	};
@@ -56,5 +56,12 @@ function log(msg) {
         console.info(msg);
     }
     $("#message-console").text(msg);
+}
+
+function status(stat) {
+    if (typeof console !== 'undefined') {
+        console.info("status"+stat);
+    }
+	$("#status").text(stat);
 }
 
