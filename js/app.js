@@ -25,6 +25,7 @@ $(function () {
             }
         } else {
             $("#control").text("start");
+            socket.send("0,0,0,0;");
             window.removeEventListener("devicemotion", accelerometerUpdate, true);
         }
     });
